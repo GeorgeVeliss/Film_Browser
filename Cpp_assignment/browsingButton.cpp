@@ -6,11 +6,11 @@
 
 void browsingButton::update()
 {
-	if (keyPressed)
+	if (keyboardPressed)
 		pressed = false;
 
 	if (!graphics::getKeyState(scancode))
-		keyPressed = false;
+		keyboardPressed = false;
 
 	graphics::getMouseState(mouse);
 	
@@ -27,15 +27,17 @@ void browsingButton::update()
 
 	if (mouse.button_left_pressed && in_bounds(cur_pos_x, cur_pos_y)) {
 		pressed = true;
+		browser->updateNeeded = true;
 		/*browser.currentFilmIndex++;
 		browser.currentFilm = (*browser.films)[browser.currentFilmIndex % browser.films->size()];*/
 	}
 	else
 		pressed = false;
 
-	if (graphics::getKeyState(scancode) && !keyPressed) {
+	if (graphics::getKeyState(scancode) && !keyboardPressed) {
 		pressed = true;
-		keyPressed = true;
+		keyboardPressed = true;
+		browser->updateNeeded = true;
 	}		
 }
 
@@ -51,10 +53,10 @@ void browsingButton::draw()
 	}
 }
 
-browsingButton::browsingButton(graphics::scancode_t scancode, std::string imageFile, std::string userPrompt, float orientation, float pos_x, float pos_y, short size) :
-	Button(pos_x, pos_y), scancode(scancode), imageFile(imageFile), userPrompt(userPrompt), orientation(orientation), size(size)
+browsingButton::browsingButton(Browser* browser, graphics::scancode_t scancode, std::string imageFile, std::string userPrompt, float orientation, float pos_x, float pos_y, short size) :
+	Button(pos_x, pos_y, browser), scancode(scancode), imageFile(imageFile), userPrompt(userPrompt), orientation(orientation), size(size)
 	{
-		keyPressed = false;
+		keyboardPressed = false;
 		hover = false;
 		br.texture = std::string(ASSET_PATH) + imageFile;
 	}

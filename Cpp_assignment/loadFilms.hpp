@@ -11,7 +11,7 @@ inline std::vector<film*>* loadFilms() {
 	films->push_back(avatar);
 
 	std::vector<std::string> klausProtagonists{ "Jason Schwartzman", "J.K. Simmons", "Rashida Jones" };
-	std::vector<genre> klausGenres{ animation, adventure, comedy };
+	std::vector<genre> klausGenres{ adventure, animation, comedy };
 	film* klaus = new film("Klaus", 2019, "Sergio Pablos", klausProtagonists, klausGenres, "klaus.png");
 	films->push_back(klaus);
 
@@ -31,12 +31,12 @@ inline std::vector<film*>* loadFilms() {
 	films->push_back(malteseFalcon);
 
 	std::vector<std::string> spiritedAwayProtagonists{ "Rumi Hiiragi", "Miyu Irino", "Mari Natsuki" };
-	std::vector<genre> spiritedAwayGenres{ animation, adventure, family };
+	std::vector<genre> spiritedAwayGenres{ adventure, animation, family };
 	film* spiritedAway = new film("Spirited Away", 2001, "Hayao Miyazaki", spiritedAwayProtagonists, spiritedAwayGenres, "spiritedAway.png");
 	films->push_back(spiritedAway);
 
 	std::vector<std::string> returnKingProtagonists{ "Elijah Wood", "Viggo Mortensen", "Ian McKellen" };
-	std::vector<genre> returnKingGenres{ action, drama, adventure };
+	std::vector<genre> returnKingGenres{ action, adventure, drama };
 	film* returnKing = new film("The Lord of the Rings:%% The Return of the King", 2003, "Peter Jackson", returnKingProtagonists, returnKingGenres, "returnKing.png");
 	films->push_back(returnKing);
 

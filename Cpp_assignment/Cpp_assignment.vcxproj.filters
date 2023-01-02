@@ -36,9 +36,6 @@
     <ClCompile Include="filteringButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="genres.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">

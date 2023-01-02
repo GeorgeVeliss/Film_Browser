@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-//#include "genres.h"
 
 const enum genre {
 	action, adventure, animation, comedy, crime, drama,

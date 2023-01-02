@@ -14,9 +14,15 @@ void filteringButton::update()
 	int cur_pos_x = (int)graphics::windowToCanvasX((float)mouse.cur_pos_x);
 	int cur_pos_y = (int)graphics::windowToCanvasY((float)mouse.cur_pos_y);
 
-	if (mouse.button_left_pressed && in_bounds(cur_pos_x, cur_pos_y))
+	if (mouse.button_left_pressed && in_bounds(cur_pos_x, cur_pos_y)) {
 		activated = !activated;
+		browser->updateNeeded = true;
+	}
 
+	if (in_bounds(cur_pos_x, cur_pos_y))
+		hover = true;
+	else
+		hover = false;
 }
 
 void filteringButton::draw()
@@ -60,12 +66,24 @@ void filteringButton::draw()
 	}
 
 	graphics::drawRect(pos_x, pos_y, width, height, br);
+
+	if (hover)
+	{
+		br.fill_color[0] = 1.0f;
+		br.fill_color[1] = 1.0f;
+		br.fill_color[2] = 1.0f;
+
+		graphics::setFont(std::string(ASSET_PATH) + "ralewayLight.ttf");
+		graphics::setOrientation(0.0f);
+		graphics::drawText(550, 370, 15, "filter by genre", br);
+	}
 	
 }
 
-filteringButton::filteringButton(float pos_x, float pos_y, short width, short height, std::string genreFilter) :
-	Button(pos_x, pos_y), width(width), height(height), genreFilter(genreFilter)
+filteringButton::filteringButton(Browser* browser, float pos_x, float pos_y, short width, short height, std::string genreFilter) :
+	Button(pos_x, pos_y, browser), width(width), height(height), genreFilter(genreFilter)
 	{
+		hover = false;
 	}
 
 std::string filteringButton::getFilter() {
@@ -79,6 +97,6 @@ void filteringButton::clearFilter() {
 bool filteringButton::in_bounds(short mouse_pos_x, short mouse_pos_y)
 {
 	bool in_bounds_x = mouse_pos_x >= pos_x - (width / 2) && mouse_pos_x <= pos_x + (width / 2);
-	bool in_bounds_y = mouse_pos_y >= pos_y - (height / 2) && mouse_pos_y <= pos_x + (height / 2);
+	bool in_bounds_y = mouse_pos_y >= pos_y - (height / 2) && mouse_pos_y <= pos_y + (height / 2);
 	return in_bounds_x && in_bounds_y;
 }

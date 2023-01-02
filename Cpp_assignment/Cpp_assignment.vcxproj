@@ -144,7 +144,6 @@
     <ClCompile Include="browsingButton.cpp" />
     <ClCompile Include="filmDisplayer.cpp" />
     <ClCompile Include="filteringButton.cpp" />
-    <ClCompile Include="genres.h" />
     <ClCompile Include="loadFilms.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="widget.cpp" />
