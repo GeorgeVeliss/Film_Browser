@@ -21,12 +21,6 @@
     <ClCompile Include="browser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="widget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filmDisplayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="loadFilms.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -34,6 +28,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="filteringButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filteringDoubleSlider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearAllFiltersButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,9 +50,6 @@
     <ClInclude Include="film.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filmDisplayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="browsingButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,6 +60,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doubleSlider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="filteringDoubleSlider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearAllFiltersButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

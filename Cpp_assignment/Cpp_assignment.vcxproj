@@ -142,21 +142,23 @@
   <ItemGroup>
     <ClCompile Include="browser.cpp" />
     <ClCompile Include="browsingButton.cpp" />
-    <ClCompile Include="filmDisplayer.cpp" />
+    <ClCompile Include="clearAllFiltersButton.cpp" />
     <ClCompile Include="filteringButton.cpp" />
+    <ClCompile Include="filteringDoubleSlider.cpp" />
     <ClCompile Include="loadFilms.hpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="browser.h" />
     <ClInclude Include="browsingButton.h" />
     <ClInclude Include="button.h" />
+    <ClInclude Include="clearAllFiltersButton.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="filmDisplayer.h" />
     <ClInclude Include="film.h" />
     <ClInclude Include="filter.h" />
     <ClInclude Include="filteringButton.h" />
+    <ClInclude Include="doubleSlider.h" />
+    <ClInclude Include="filteringDoubleSlider.h" />
     <ClInclude Include="widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

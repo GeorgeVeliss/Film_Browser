@@ -1,50 +1,48 @@
 #pragma once
 
-#include "Widget.h"
-#include "film.h"
 #include "graphics.h"
-#include "filter.h"
 
+// The class that handles all the graphical elements, and displays the films
 class Browser
 {
-private:	
-	std::vector<Widget*>* widgets;
-	std::vector<Filter*>* filters;
-	std::vector<film*>* films;
+private:
 	graphics::Brush br;
+	std::vector<class Widget*>* widgets;
+	std::vector<class Filter*>* filters;
+	std::vector<const class film*>* films;	
 	int currentFilmIndex = 0;
-	film* currentFilm;
-	class browsingButton* forwardButton;
-	class browsingButton* backwardButton;
-	class filteringButton* actionFilteringButton;
-	class filteringButton* adventureFilteringButton;
-	class filteringButton* animationFilteringButton;
-	class filteringButton* comedyFilteringButton;
-	class filteringButton* crimeFilteringButton;
-	class filteringButton* dramaFilteringButton;
-	class filteringButton* familyFilteringButton;
-	class filteringButton* fantasyFilteringButton;
-	class filteringButton* film_noirFilteringButton;
-	class filteringButton* mysteryFilteringButton;
-	class filteringButton* romanceFilteringButton;
-	class filteringButton* sci_fiFilteringButton;
+	const film* currentFilm;
+	bool updateActive = false;
 
-	bool filmEligible(std::string filter, film* film);
-	bool genreEligible(std::string filter, film* film);
-	//bool yearEligible(film*);
+	class browsingButton* forwardButton;
+	browsingButton* backwardButton;
+	class filteringButton* actionFilteringButton;
+	filteringButton* adventureFilteringButton;
+	filteringButton* animationFilteringButton;
+	filteringButton* comedyFilteringButton;
+	filteringButton* crimeFilteringButton;
+	filteringButton* dramaFilteringButton;
+	filteringButton* familyFilteringButton;
+	filteringButton* fantasyFilteringButton;
+	filteringButton* film_noirFilteringButton;
+	filteringButton* mysteryFilteringButton;
+	filteringButton* romanceFilteringButton;
+	filteringButton* sci_fiFilteringButton;
+	class filteringDoubleSlider* yearFilteringSlider;
+	class clearAllFiltersButton* clearFiltersButton;
+
+	// finds the next eligible film from the film vector, and makes it the current one
+	void nextEligibleFilm(int increment);
+	// nextEligibleFilm() makes this true when it fails to find any eligible films
 	bool noEligibleFilms = false;
-	
-	
+		
 public:
-	//bool debug_mode = false;
-	//void setDebugMode(bool d) { debug_mode = d; }
-	//bool getDebugMode() { return debug_mode; }
-	//std::vector<filteringButton*>* getGenreFilters();
-	bool updateNeeded = false;
+	// used by widgets that change which films can be diplayed
+	void activateUpdate() { updateActive = true; }
+	// used by filters to check whether the current film is eligible under them
+	const film* getCurrentFilm() { return currentFilm; }
 	void update();
 	void draw();
 	void init();
-	//Browser();
 	~Browser();
-	void clearFilters();
 };

@@ -1,9 +1,12 @@
 #pragma once
 #include "film.h"
 
-inline std::vector<film*>* loadFilms() {
+// Function that instantiates all films to be loaded to the browser.
+// Returns a pointer to a vector of const film pointers,
+// pointer are const, so that the films cannot be altered
+inline std::vector<const film*>* loadFilms() {
 
-	std::vector<film*>* films = new std::vector<film*>;
+	std::vector<const film*>* films = new std::vector<const film*>;
 
 	std::vector<std::string> avatarProtagonists{ "Sam Worthington", "Zoe Saldana", "Sigourney Weaver" };
 	std::vector<genre> avatarGenres{ action, adventure, fantasy };
@@ -68,14 +71,4 @@ inline std::vector<film*>* loadFilms() {
 	return films;
 
 }
-
-/*std::vector<std::string> evaProtagonists{"Daniel Brühl", "Marta Etura", "Alberto Ammann"};
-	std::vector<genreType> evaGenres{ adventure, drama, fantasy };
-	film* eva = new film("Eva", 2011, "Kike Maíllo", evaProtagonists, evaGenres, "eva.png");
-	films->push_back(eva);*/
-
-/*std::vector<std::string> cinderellaProtagonists{ "Libuse Safránková", "Pavel Trávnícek", "Carola Braunbock" };
-	std::vector<genreType> cinderellaGenres{ drama, fantasy, family };
-	film* cinderella = new film("Tri orísky pro Popelku / Cinderella", 1973, "Václav Vorlícek", cinderellaProtagonists, cinderellaGenres, "cinderella.png");
-	films->push_back(cinderella);*/
 

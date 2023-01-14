@@ -13,15 +13,6 @@ void draw()
 {
     Browser* browser = reinterpret_cast<Browser*>(graphics::getUserData());
     browser->draw();
-
-    /*graphics::Brush br;
-    br.texture = "assets\\grandBudapest.png";
-    br.outline_opacity = 0.0f;
-
-    graphics::drawRect(500, 250, 600, 600, br);*/
-    //graphics::setFont(std::string(ASSET_PATH) + "Enchanted.otf");
-
-    //graphics::drawText(500, 250, 250, "sample", br);
 }
 
 int main()
@@ -40,6 +31,7 @@ int main()
 
     filmBrowser.init();
     graphics::startMessageLoop();
+    graphics::stopMessageLoop();
 
     return 0;
 }
