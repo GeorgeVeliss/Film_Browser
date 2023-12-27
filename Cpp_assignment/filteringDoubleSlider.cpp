@@ -77,7 +77,6 @@ void filteringDoubleSlider::update()
 		hover = true;
 	else
 		hover = false;
-
 }
 
 void filteringDoubleSlider::draw()
@@ -108,25 +107,29 @@ void filteringDoubleSlider::draw()
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
 
-	if (hover)
+	if (hover) 
 		graphics::drawText(170, 420, 15, "filter by release year", br);
 
-	if (hoverLo || draggingLo)
-		graphics::drawText(70, 490, 15, "from: " + std::to_string(getLoValue()), br);
+	if (hoverLo || draggingLo) {
+		graphics::drawText(50, 440, 15, "from: ", br);
+		graphics::drawText(lo_pos - 28, 490, 14, std::to_string(getLoValue()), br);
+	}
 
-	if (hoverHi || draggingHi)
-		graphics::drawText(350, 490, 15, "up to: " + std::to_string(getHiValue()), br);
+	if (hoverHi || draggingHi) {
+		graphics::drawText(400, 440, 15, "up to: ", br);
+		graphics::drawText(hi_pos - 4, 490, 14, std::to_string(getHiValue()), br);
+	}
 }
 
 filteringDoubleSlider::filteringDoubleSlider(Browser* browser, float pos_x, float pos_y, short width, short height, short rangeLo, short rangeHi) :
 	doubleSlider(pos_x, pos_y, browser), width(width), height(height), rangeLo(rangeLo), rangeHi(rangeHi)
 {
+	// compute the low and high ends of the slider using specified slider position and width
 	lo_end = pos_x - (width / 2);
 	hi_end = pos_x + (width / 2);
+	// initialize the thumb positions to each end of the slider
 	lo_pos = lo_end;
 	hi_pos = hi_end;
-	hoverLo = hoverHi = false;	
-	draggingHi = draggingLo = false;
 }
 
 // Computes and returns the current low thumb value within the range, based on canvas positions
@@ -150,10 +153,7 @@ short filteringDoubleSlider::getHiValue()
 	return currentValueHi;
 }
 
-/// <summary>
-/// ////////
-/// </summary>
-/// <returns></returns>
+// Return whether the release year of the current film lies within the bounds of the slider
 bool filteringDoubleSlider::filmEligible()
 {	
 	unsigned short currentYear = browser->getCurrentFilm()->year;
@@ -187,6 +187,6 @@ bool filteringDoubleSlider::inBoundsHi(short mouse_pos_x, short mouse_pos_y)
 // Resets thumbs to the ends of the slider
 void filteringDoubleSlider::clearFilter()
 {
-	lo_pos = pos_x - (width / 2);
-	hi_pos = pos_x + (width / 2);
+	lo_pos = lo_end;
+	hi_pos = hi_end;
 }

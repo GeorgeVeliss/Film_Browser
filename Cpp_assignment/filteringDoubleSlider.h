@@ -14,8 +14,8 @@ class filteringDoubleSlider : public doubleSlider, public Filter
 	short lo_pos, hi_pos;	
 	// Low and high of range
 	short rangeLo, rangeHi;
-	bool draggingLo, draggingHi;
-	bool hoverLo, hoverHi;
+	bool draggingLo = false, draggingHi = false;
+	bool hoverLo = false, hoverHi = false;
 	// Takes in the current_mouse position and return whether it is on the widget surface
 	bool inBounds(short pos_x, short pos_y);
 	// Same as above but for lower thumb surface
@@ -30,13 +30,10 @@ public:
 	// Constructor
 	filteringDoubleSlider(Browser* browser, float pos_x, float pos_y, 
 		short width, short height, short rangeLo, short rangeHi);
-	// Returns a pair with the current values of the low and high thumb within the given range
-	std::pair<short,short> getSliderValues();
 
 	// Resets thumbs to the ends of the slider
 	void clearFilter();
 	bool filmEligible();
 	void update();
 	void draw();
-
 };

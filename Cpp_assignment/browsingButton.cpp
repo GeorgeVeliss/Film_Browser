@@ -30,7 +30,7 @@ void browsingButton::update()
 		pressed = false;
 
 	// If the keyboard key that corresponds to this button is pressed, 
-	// and it wasn't pressed before, activateUpdate() and make keyboardPressed = true
+	// and it wasn't pressed before, make keyboardPressed = true and activateUpdate()
 	if (graphics::getKeyState(scancode) && !keyboardPressed) {
 		pressed = true;
 		keyboardPressed = true;
@@ -53,7 +53,8 @@ void browsingButton::draw()
 	}
 }
 
-browsingButton::browsingButton(Browser* browser, graphics::scancode_t scancode, std::string imageFile, std::string userPrompt, float orientation, float pos_x, float pos_y, short size) :
+browsingButton::browsingButton(Browser* browser, graphics::scancode_t scancode, std::string imageFile, 
+						std::string userPrompt, float orientation, float pos_x, float pos_y, short size) :
 	Button(pos_x, pos_y, browser), scancode(scancode), imageFile(imageFile), userPrompt(userPrompt), orientation(orientation), size(size)
 	{
 		br.texture = std::string(ASSET_PATH) + imageFile;

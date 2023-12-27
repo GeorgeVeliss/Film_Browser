@@ -77,15 +77,14 @@ void filteringButton::draw()
 
 		graphics::setFont(std::string(ASSET_PATH) + "ralewayLight.ttf");
 		graphics::drawText(580, 350, 15, "filter by genre", br);
-	}
-	
+	}	
 }
 
-filteringButton::filteringButton(Browser* browser, float pos_x, float pos_y, short width, short height, std::string genreFilter) :
+filteringButton::filteringButton(Browser* browser, float pos_x, float pos_y, short width, short height, const std::string genreFilter) :
 	Button(pos_x, pos_y, browser), width(width), height(height), genreFilter(genreFilter)
-	{		
-	}
+	{}
 
+// returns whether any of the genres of the browser's current film is the same as the genre of the filter
 bool filteringButton::filmEligible() {
 	for (genre genre : browser->getCurrentFilm()->genres) {
 		if (genreFilter == allGenres.at(genre))
@@ -94,6 +93,7 @@ bool filteringButton::filmEligible() {
 	return false;
 }
 
+// deactivates filter
 void filteringButton::clearFilter() {
 	activated = false;
 }

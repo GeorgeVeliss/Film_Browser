@@ -9,7 +9,8 @@ class clearAllFiltersButton : public Button
 	short width, height;
 	bool inBounds(short pos_x, short pos_y);
 public:
-	clearAllFiltersButton(Browser* browser, std::string imageFile, float pos_x, float pos_y, short width, short height);
+	clearAllFiltersButton(Browser* browser, std::string imageFile,
+		float pos_x, float pos_y, short width, short height);
 	void update();
 	void draw();
 };

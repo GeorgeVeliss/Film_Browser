@@ -3,7 +3,7 @@
 
 // Function that instantiates all films to be loaded to the browser.
 // Returns a pointer to a vector of const film pointers,
-// pointer are const, so that the films cannot be altered
+// and pointers are const so that the films cannot be altered
 inline std::vector<const film*>* loadFilms() {
 
 	std::vector<const film*>* films = new std::vector<const film*>;

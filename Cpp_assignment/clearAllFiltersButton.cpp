@@ -1,5 +1,6 @@
 #include "clearAllFiltersButton.h"
 #include "browser.h"
+#include "button.h"
 #include "config.h"
 
 void clearAllFiltersButton::update()

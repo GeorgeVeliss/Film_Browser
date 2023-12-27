@@ -18,7 +18,7 @@ void Browser::update()
 	// and make the necessary changes
 	if (updateActive) {
 
-		// If the button that clears all filters is pressed, clear away!
+		// If the button that clears all filters is pressed, clear the filters away!
 		if (clearFiltersButton->isPressed())
 			for (auto filter : *filters)
 				filter->clearFilter();
@@ -39,7 +39,7 @@ void Browser::update()
 		// would have have ended the running of update() )
 		if (forwardButton->isPressed()) {
 
-			// increment the current film index by one and check whether it has become negative
+			// increment the current film index by one and check whether it has become negative,
 			// which causes problems with the modulo operation, so make sure it's positive
 			currentFilmIndex++;
 			while (currentFilmIndex < 0)
@@ -60,7 +60,7 @@ void Browser::update()
 			nextEligibleFilm(-1);
 		}
 	}
-	// make updateActive false again, so that all the above doesn't run 
+	// make updateActive false again, so that all the above code doesn't run 
 	// until it has to change which films are to be displayed
 	updateActive = false;
 }
@@ -70,9 +70,13 @@ void Browser::draw()
 	graphics::setFont(std::string(ASSET_PATH) + "ralewayRegular.ttf");
 
 	// Check if the currently active filters don't allow any films to be displayed, 
-	// and if so, display a warning message to the user instead
+	// and if so, display a warning message to the user instead and display only the filters
 	if (noEligibleFilms) {
-		graphics::drawText(150, 250, 20, "No film exists that satisfies the given requirements. Please clear some or all filters.", br);
+		graphics::drawText(240, 250, 20, "No film satisfies the chosen filters. Please clear some or all filters.", br);
+		for (Filter* f : *filters)
+			dynamic_cast<Widget*>(f)->draw();
+
+		clearFiltersButton->draw();
 	}
 	
 	// but if there is at least one eligible current film, then display it
@@ -132,16 +136,7 @@ void Browser::draw()
 		// Draw all widgets
 		for (Widget* w : *widgets)
 			w->draw();
-
-		// Stop running draw()
-		return;
-	}
-
-	// If there are no eligible films, draw filters and clear button
-	for (auto f : *filters)
-		dynamic_cast<Widget*>(f) -> draw();
-
-	clearFiltersButton->draw();
+	}	
 }
 
 // Search through every film, starting with the currently displayed film,
@@ -262,35 +257,6 @@ void Browser::init()
 	clearFiltersButton = new clearAllFiltersButton(this, "clearAllFiltersButton.png", 900, 450, 110, 50);
 	widgets->push_back(clearFiltersButton);
 }
-
-//// Return whether a given film passes a given filter, depending on the filter type
-//bool Browser::filmEligible(const Filter* filter, const film* film)
-//{
-//	if ((filteringButton&)(filter)) {
-//		std::string& filterString = (filteringButton&)(filter)->getFilterString();
-//		return genreEligible(filterString, film);
-//	}
-//	else if (dynamic_cast<filteringDoubleSlider*>(filter)) {
-//		std::pair<short, short>& sliderValues dynamic_cast<filteringDoubleSlider*>(filter)->getSliderValues();
-//		return yearEligible(sliderValues, film);
-//	}
-//}
-//
-//// Return whether a given film is of a given filter genre
-//bool Browser::genreEligible(const std::string& filter, const film* film)
-//{
-//	for (genre genre : film->genres)
-//		if (filter == allGenres.at(genre))
-//			return true;
-//	return false;
-//}
-//
-//// Return whether the release year of a certain film is between some filter years
-//bool Browser::yearEligible(const std::pair<short, short>& filter, const film* film) 
-//{
-//	return filter.first <= film->year && filter.second >= film->year;
-//}
-
 
 Browser::~Browser() 
 {
